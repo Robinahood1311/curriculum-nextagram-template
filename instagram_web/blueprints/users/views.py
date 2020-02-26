@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template
-
+from flask import Blueprint, render_template, request, flash, url_for, redirect
+from models.user import User
+from werkzeug.security import generate_password_hash
+from flask_wtf.csrf import CSRFProtect
 
 users_blueprint = Blueprint('users',
                             __name__,
@@ -13,7 +15,16 @@ def new():
 
 @users_blueprint.route('/', methods=['POST'])
 def create():
-    pass
+    username = request.form.get("username")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    hashed_password = generate_password_hash(password)
+    user = User(username=username, email=email, password=hashed_password)
+    if user.save():
+        flash(f"Welcome, {username}! :)")
+        return redirect(url_for("users.new"))
+    else:
+        return render_template("users/new.html", errors=user.errors)
 
 
 @users_blueprint.route('/<username>', methods=["GET"])
