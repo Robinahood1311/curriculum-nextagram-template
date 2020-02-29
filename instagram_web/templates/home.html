@@ -1,12 +1,13 @@
 {% extends "_layout.html" %}
 
-{% block title %}
-Homepage
-{% endblock %}
-
-{% block header %}
-{% endblock %}
-
 {% block content %}
-<h1>Homepage</h1>
+<div id="homepage">
+  {% if current_user.is_authenticated %}
+  <h3 class="font-effect-neon">HELLO</h3>
+  <h4>{{ current_user.username }}</h4>
+  {% else %}
+  <h3 class="font-effect-neon">HELLO</h3>
+  <h4>welcome to nextagram</h4>
+  {% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,56 @@
+{% macro navbar() %}
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="{{url_for('home')}}">nextagram.</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if current_user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('home')}}">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Lalala</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
+      {% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+        style="background-color: transparent; border: 2px solid rgb(230, 200, 215); color: white;">
+      <button class="btn my-2 my-sm-0" type="submit"><i class=" fas fa-search"
+          style="color: rgb(230, 200, 215)"></i></button>
+    </form>
+    {% if current_user.is_authenticated %}
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" style="color: rgb(230, 200, 215)" href="#" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ current_user.username }}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{url_for('users.edit', id=current_user.id)}}">update info.</a>
+        <a class="dropdown-item" href="{{url_for('sessions.logout')}}">log out.</a>
+      </div>
+    </div>
+    {% else %}
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" style="color: rgb(230, 200, 215)" href="#" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        User
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{url_for('users.new')}}">sign up.</a>
+        <a class="dropdown-item" href="{{url_for('sessions.new')}}">log in.</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</nav>
+
+{% endmacro %}

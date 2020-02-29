@@ -1,8 +1,129 @@
 body {
   margin: 0;
   padding-bottom: 15px;
-  position: relative;
-  min-height: 100vh;
+  /* position: relative; */
+  max-height: 100vh;
+  background-image: url("../pichas/finaloption\(2\).jpg");
+  color: rgb(51, 179, 51);
+}
+
+#homepage {
+  border: 7px double rgb(247, 132, 151);
+  border-radius: 20px;
+  padding-top: 15px;
+  width: 400px;
+  height: 150px;
+  margin: auto;
+  text-align: center;
+  
+}
+
+h3 {
+  font-family: Lato;
+  font-size: 3em;
+}
+
+h4 {
+  font-family: Lato;
+  font-size: 2em;
+  color: rgb(250, 125, 146);
+  font-weight: bold;
+}
+
+nav {
+  color: rgb(230, 200, 215);
+}
+
+#itsaform {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#itsaform-update {
+  margin-top: -30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#profile_picha {
+  height: 200px;
+  width: 200px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin: 20px 0px;
+}
+
+input[type=text] {
+  background-color: transparent;
+  border: 2px solid rgb(0, 225, 255);
+  color: rgb(0, 225, 255);
+  text-align: center;
+}
+
+input[type=text]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=email] {
+  background-color: transparent;
+  border: 2px solid rgb(51, 179, 51);
+  color: rgb(51, 179, 51);
+  text-align: center;
+}
+
+input[type=email]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=password] {
+  background-color: transparent;
+  border: 2px solid pink;
+  color: pink;
+  text-align: center;
+}
+
+input[type=password]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=file] {
+  background-color: transparent;
+  border: 2px solid pink;
+  color: pink;
+  margin: 25px 0px 20px 0px;
+}
+
+
+#std-btn {
+  border: 1px solid rgb(51, 179, 51);
+  background-color: transparent;
+  border-radius: 10px;
+  color: rgb(51, 179, 51);
+  height: 35px;
+}
+
+#std-btn:hover {
+  background-color: rgb(51, 179, 51);
+  color: black;
+}
+
+#std-btn-2 {
+  border: 1px solid rgb(230, 200, 215);
+  background-color: transparent;
+  border-radius: 10px;
+  color: rgb(230, 200, 215);
+  height: 35px;
+}
+
+#std-btn-2:hover {
+  background-color: rgb(230, 200, 215);
+  color: black;
 }
 
 footer {
@@ -12,10 +133,10 @@ footer {
   left: 0;
   right: 0;
   text-align: center;
-  color: #303030;
+  color: white;
 }
 
 footer a {
   text-decoration: none;
-  color: #303030;
+  color: white;
 }

@@ -1,0 +1,32 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<div id="itsaform-update">
+  <div class="col-4 p-5">
+    <h3 class="font-effect-neon">{{ user.username }}</h3>
+    <form method="POST" enctype="multipart/form-data" action="{{url_for('users.upload')}}">
+      {% if current_user.profile_image %}
+      <div class="mx-auto" id="profile_picha">
+        <img src="{{ current_user.profile_image }}">
+      </div>
+      {% endif %}
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input type="file" class="form-control" name="profile_image">
+        <button type="submit" id="std-btn-2">upload.</button>
+      </div>
+    </form>
+    <form method="POST" enctype="multipart/form-data" action="{{url_for('users.update', id=current_user.id)}}">
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p style="margin: 10px 0 0 0">username:</p>
+        <input type="text" class="form-control" name="updated_username" value="{{ user.username }}">
+        <p style="margin: 10px 0 0 0">email:</p>
+        <input type="email" class="form-control" name="updated_email" value="{{ user.email }}">
+        <button type="submit" class="mt-4" id="std-btn-2">update.</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

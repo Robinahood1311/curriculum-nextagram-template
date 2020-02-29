@@ -2,20 +2,22 @@
 
 {% block content %}
 
-<div class="col-7 p-5">
-  <h3>User Sign Up</h3>
-  <form method="post" action="{{url_for('users.create')}}">
-    <div class="form-group">
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-      <p style="margin: 10px 0 0 0">Username:</p>
-      <input type="text" class="form-control" name="username">
-      <p style="margin: 10px 0 0 0">Email:</p>
-      <input type="email" class="form-control" name="email">
-      <p style="margin: 10px 0 0 0">Password:</p>
-      <input type="password" class="form-control" name="password">
-      <button type="submit" class="btn btn-primary mt-4">Add User</button>
-    </div>
-  </form>
+<div id="itsaform">
+  <div class="col-4">
+    <h3 class="font-effect-neon">SIGN UP.</h3>
+    <form method="POST" action="{{url_for('users.create')}}">
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p style="margin: 10px 0 0 0">username:</p>
+        <input type="text" class="form-control" name="username">
+        <p style="margin: 10px 0 0 0">e-mail:</p>
+        <input type="email" class="form-control" name="email">
+        <p style="margin: 10px 0 0 0">password:</p>
+        <input type="password" class="form-control" name="password">
+        <button type="submit" class="mt-4" id="std-btn">sign up.</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

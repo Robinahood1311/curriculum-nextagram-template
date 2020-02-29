@@ -1,0 +1,20 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<div id="itsaform">
+  <div class="col-4">
+    <h3 class="font-effect-neon">LOG IN.</h3>
+    <form method="post" action="{{url_for('sessions.login')}}">
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p style="margin: 10px 0 0 0">Username:</p>
+        <input type="text" class="form-control" name="username">
+        <p style="margin: 10px 0 0 0">Password:</p>
+        <input type="password" class="form-control" name="password">
+        <button type="submit" class="mt-4" id="std-btn">log in.</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
