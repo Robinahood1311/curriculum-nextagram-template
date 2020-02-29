@@ -37,12 +37,17 @@ def create():
         return redirect(url_for('users.new'))
 
 
-# @users_blueprint.route('/<username>', methods=["GET"])
-# @login_required
-# def show(username):
-#     user = User.get_or_none(User.username == username)
-
-#     if current_user:
+@users_blueprint.route('/<username>', methods=["GET"])
+@login_required
+def show(username):
+    if not current_user.username == username:
+        flash("who you.")
+    else:
+        user = User.get_or_none(User.username == username)
+        if not user:
+            flash("no user found for username provided.")
+        else:
+            return render_template("users/show.html", user=user)
 
 
 @users_blueprint.route('/', methods=["GET"])
@@ -103,7 +108,7 @@ def upload():
             profile_image=file.filename).where(User.id == current_user.id)
 
         if upload_profile_img.execute():
-            flash("Successfully changed profile image!")
+            flash("well don't you look fabulous :>")
             return redirect(url_for("users.edit", id=current_user.id))
         else:
             flash("Some error occurred")

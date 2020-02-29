@@ -34,7 +34,10 @@
         {{ current_user.username }}
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{url_for('users.show', username=current_user.username)}}">my profile.</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{url_for('users.edit', id=current_user.id)}}">update info.</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{url_for('sessions.logout')}}">log out.</a>
       </div>
     </div>

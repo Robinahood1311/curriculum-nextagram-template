@@ -5,11 +5,9 @@
   <div class="col-4 p-5">
     <h3 class="font-effect-neon">{{ user.username }}</h3>
     <form method="POST" enctype="multipart/form-data" action="{{url_for('users.upload')}}">
-      {% if current_user.profile_image %}
-      <div class="mx-auto" id="profile_picha">
-        <img src="{{ current_user.profile_image }}">
+      <div class="mx-auto">
+        <img src="{{ current_user.profile_image }}" id="profile_picha">
       </div>
-      {% endif %}
       <div class="form-group">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <input type="file" class="form-control" name="profile_image">

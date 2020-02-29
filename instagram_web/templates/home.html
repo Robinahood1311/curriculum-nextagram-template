@@ -1,13 +1,26 @@
 {% extends "_layout.html" %}
 
 {% block content %}
-<div id="homepage">
-  {% if current_user.is_authenticated %}
-  <h3 class="font-effect-neon">HELLO</h3>
-  <h4>{{ current_user.username }}</h4>
-  {% else %}
-  <h3 class="font-effect-neon">HELLO</h3>
-  <h4>welcome to nextagram</h4>
+<div>
+  <div id="homepage">
+    {% if current_user.is_authenticated %}
+    <h3 class="font-effect-neon">HELLO</h3>
+    <h4>{{ current_user.username }}</h4>
+    {% else %}
+    <h3 class="font-effect-neon">HELLO</h3>
+    <h4>welcome to nextagram</h4>
+  </div>
+  <div class="container" id="homepage-2">
+    <div class="col-4" id="homepage-column">
+      <h3 class="font-effect-neon" style="margin-bottom: 30px">New here?</h3>
+      <a href="{{url_for('users.new')}}" id="std-btn-3">sign up.</a>
+    </div>
+    <p class="vl"></p>
+    <div class="col-4" id="homepage-column">
+      <h3 class="font-effect-neon" style="margin-bottom: 30px">Existing user?</h3>
+      <a href="{{url_for('sessions.new')}}" id="std-btn-3">log in.</a>
+    </div>
+  </div>
   {% endif %}
 </div>
 {% endblock %}

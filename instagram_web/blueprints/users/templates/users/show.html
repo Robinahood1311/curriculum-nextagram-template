@@ -2,7 +2,35 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-<h2>Hello, {{ current_user.username }} :)</h2>
+<div class="container pt-3">
+  <div class="col-10 mx-auto" id="profile">
+    <div class="col-4" id="profile-data">
+      <h4>{{ current_user.username }}</h4>
+      <div class="mx-auto">
+        <img src="{{ current_user.profile_image }}" id="smaller_profile_picha">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="col-8" style="display: flex; flex-direction: row;">
+        <div class="col-4" id="profile-data">
+          <h4>posts</h4>
+          <h5 id="profile-data-num">123</h5>
+        </div>
+        <div class="col-4" id="profile-data">
+          <h4>followers</h4>
+          <h5 id="profile-data-num">123</h5>
+        </div>
+        <div class="col-4" id="profile-data">
+          <h4>following</h4>
+          <h5 id="profile-data-num">1.2k</h5>
+        </div>
+      </div>
+      <div class="col-8" id="profile-data" style="margin-top: 20px">
+        <a href="{{url_for('users.edit', id=current_user.id)}}" id="std-btn-4">edit your profile.</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endif %}
 
 {% endblock %}
