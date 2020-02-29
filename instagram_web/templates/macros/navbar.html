@@ -1,7 +1,7 @@
 {% macro navbar() %}
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" href="{{url_for('home')}}">nextagram.</a>
+  <a class="navbar-brand" href="{{url_for('home')}}" id="nav-words">nextagram.</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,10 @@
     <ul class="navbar-nav mr-auto">
       {% if current_user.is_authenticated %}
       <li class="nav-item active">
-        <a class="nav-link" href="{{url_for('home')}}">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{url_for('home')}}" id="nav-words">home.<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('home')}}" id="nav-words">my feed.</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Lalala</a>
@@ -29,8 +32,8 @@
     </form>
     {% if current_user.is_authenticated %}
     <div class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" style="color: rgb(230, 200, 215)" href="#" id="navbarDropdown" role="button"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle" href="#" id="nav-words" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         {{ current_user.username }}
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">

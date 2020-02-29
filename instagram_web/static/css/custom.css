@@ -72,7 +72,11 @@ h4 {
   font-weight: bold;
 }
 
-nav {
+#nav-words {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#nav-words:hover {
   color: rgb(230, 200, 215);
 }
 
