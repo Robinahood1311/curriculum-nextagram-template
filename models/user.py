@@ -29,4 +29,4 @@ class User(BaseModel, UserMixin):
         if self.profile_image:
             return f"{S3_LINK}/{self.profile_image}"
         else:
-            return url_for("static", filename="images/default.jpg")
+            return url_for("static", filename="pichas/default.jpg")

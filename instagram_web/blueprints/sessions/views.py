@@ -26,15 +26,15 @@ def login():
             login_user(user_exists)
             return redirect(url_for('home'))
         else:
-            flash("Incorrect Password")
+            flash("incorrect password")
             return redirect(url_for('sessions.new'))
     else:
-        flash("Oops who you")
+        flash("oops who you, sign up ples")
         return redirect(url_for('sessions.new'))
 
 
 @sessions_blueprint.route("/logout", methods=["GET"])
 def logout():
     logout_user()
-    flash("Logged out, byeeee")
+    flash("logged out, byeeee")
     return redirect(url_for('home'))

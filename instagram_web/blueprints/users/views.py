@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 import re
 from flask_login import login_user, logout_user, login_required, current_user
 from helper import upload_file_to_s3
-from config import S3_BUCKET
+from config import S3_BUCKET, S3_LOCATION
 
 users_blueprint = Blueprint('users',
                             __name__,
@@ -22,18 +22,26 @@ def create():
     username = request.form.get("username")
     email = request.form.get("email")
     password = request.form.get("password")
-    if len(password) > 6 and re.search(r"[a-zA-Z]", password) and re.search(r"[\W]", password):
-        hashed_password = generate_password_hash(password)
-        user = User(username=username, email=email,
-                    password=hashed_password)
-        if user.save():
-            flash(f"Welcome, {username}! :)")
-            return redirect(url_for("users.new"))
+    if len(username) != 0:
+        if len(email) != 0:
+            if len(password) > 6 and re.search(r"[a-zA-Z]", password) and re.search(r"[\W]", password):
+                hashed_password = generate_password_hash(password)
+                user = User(username=username, email=email,
+                            password=hashed_password)
+                if user.save():
+                    flash(f"welcome, {username}! :)")
+                    return redirect(url_for("users.new"))
+                else:
+                    return render_template("users/new.html", errors=user.errors)
+            else:
+                flash(
+                    "password invalid: must have 6 characters of upper, lowercase & special characters >:(")
+                return redirect(url_for('users.new'))
         else:
-            return render_template("users/new.html", errors=user.errors)
+            flash("enter an e-mail ples :p")
+            return redirect(url_for('users.new'))
     else:
-        flash(
-            "Password invalid: must have 6 characters of upper, lowercase & special characters >:(")
+        flash("enter a username ples C:")
         return redirect(url_for('users.new'))
 
 
@@ -47,7 +55,7 @@ def show(username):
         if not user:
             flash("no user found for username provided.")
         else:
-            return render_template("users/show.html", user=user)
+            return render_template("users/show.html")
 
 
 @users_blueprint.route('/', methods=["GET"])
@@ -87,7 +95,6 @@ def update(id):
             return redirect(url_for("users.edit", id=id))
 
         else:
-            breakpoint()
             flash("oops you still the same")
             return redirect(url_for("users.edit", id=id))
 
@@ -111,7 +118,7 @@ def upload():
             flash("well don't you look fabulous :>")
             return redirect(url_for("users.edit", id=current_user.id))
         else:
-            flash("Some error occurred")
+            flash("oops that didnt work")
             return redirect(url_for("users.edit", id=current_user.id))
 
     else:

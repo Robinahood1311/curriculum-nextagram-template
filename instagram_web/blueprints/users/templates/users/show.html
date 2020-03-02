@@ -7,30 +7,74 @@
     <div class="col-4" id="profile-data">
       <h4>{{ current_user.username }}</h4>
       <div class="mx-auto">
-        <img src="{{ current_user.profile_image }}" id="smaller_profile_picha">
+        <img src="http://nextagram-melissa.s3.amazonaws.com/{{current_user.profile_image}}" id="smaller_profile_picha">
       </div>
     </div>
-    <div class="col-12">
-      <div class="col-8" style="display: flex; flex-direction: row;">
+    <div class="col-8">
+      <div class="col-12" style="display: flex; flex-direction: row;">
         <div class="col-4" id="profile-data">
           <h4>posts</h4>
           <h5 id="profile-data-num">123</h5>
         </div>
         <div class="col-4" id="profile-data">
           <h4>followers</h4>
-          <h5 id="profile-data-num">123</h5>
+          <h5 id="profile-data-num">1.2k</h5>
         </div>
         <div class="col-4" id="profile-data">
           <h4>following</h4>
-          <h5 id="profile-data-num">1.2k</h5>
+          <h5 id="profile-data-num">12</h5>
         </div>
       </div>
-      <div class="col-8" id="profile-data" style="margin-top: 20px">
+      <div class="col-12" id="profile-data"
+        style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
         <a href="{{url_for('users.edit', id=current_user.id)}}" id="std-btn-4">edit your profile.</a>
+        <button type="button" data-toggle="modal" data-target="#exampleModal" id="std-btn-2">
+          <i class="fas fa-plus-hexagon"></i>add post.
+        </button>
       </div>
     </div>
   </div>
 </div>
-{% endif %}
 
-{% endblock %}
+<div id="user-posts">
+  {% for image in current_user.images %}
+  <div>
+    <img src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" id="user-post">
+  </div>
+  {% endfor %}
+</div>
+
+<hr />
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="modal-style">
+      <div class="modal-header" style="display: flex; align-items: center;">
+        <h4 class="modal-title" id="exampleModalLabel">add post.</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: pink">&times;</span>
+        </button>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <div class="mx-auto" id="image-preview">
+          <h4>PREVIEW</h4>
+        </div>
+        <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input type="file" class="form-control" name="user_image">
+            <p>caption:</p>
+            <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
+            <button type="submit" id="std-btn-2">upload post.</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endif %} {% endblock %}

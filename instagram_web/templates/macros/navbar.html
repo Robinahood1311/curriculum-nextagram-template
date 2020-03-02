@@ -31,6 +31,9 @@
           style="color: rgb(230, 200, 215)"></i></button>
     </form>
     {% if current_user.is_authenticated %}
+    <div class="ml-5">
+      <img src="https://nextagram-melissa.s3.amazonaws.com/{{ current_user.profile_image }}" id="mini_profile_picha">
+    </div>
     <div class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="nav-words" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -39,7 +42,7 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="{{url_for('users.show', username=current_user.username)}}">my profile.</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="{{url_for('users.edit', id=current_user.id)}}">update info.</a>
+        <a class="dropdown-item" href="{{url_for('users.edit', id=current_user.id)}}">edit profile.</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{url_for('sessions.logout')}}">log out.</a>
       </div>
@@ -48,7 +51,7 @@
     <div class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" style="color: rgb(230, 200, 215)" href="#" id="navbarDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        User
+        user
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="{{url_for('users.new')}}">sign up.</a>
