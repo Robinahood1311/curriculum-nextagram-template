@@ -22,11 +22,8 @@
         <h6 class="card-title">{{user.username}}</h6>
       </a>
     </div>
-    <img class="card-img-top" src="{{image.user_image_url}}">
-    <div class="card-body">
-      <p class="card-text" id="post-caption">{{image.caption}}</p>
-    </div>
-    <div>
+    <img class="card-img-top" id="post-picha" src="{{image.user_image_url}}">
+    <div id="post-icons">
       <p>
         <i class="fas fa-heart"></i>
         <a href="{{url_for('donations.new', image_id=image.id)}}">
@@ -34,6 +31,10 @@
         </a>
         <i class="fas fa-comment-dots"></i>
       </p>
+    </div>
+    <div class="card-body">
+      <p class="card-text" id="post-caption-username">{{user.username}}</p>
+      <p class="card-text" id="post-caption">{{image.caption}}</p>
     </div>
   </div>
 </div>

@@ -2,10 +2,23 @@ from flask import Blueprint, flash, redirect, url_for, render_template, request
 from flask_login import login_required, current_user
 from models.image import Image
 from instagram_web.util.braintree import gateway
+import requests
+from config import MAILGUN_API_KEY, MAILGUN_BASE_URL, MAILGUN_DOMAIN_NAME
 from models.donation import Donation
+from models.user import User
 
 donations_blueprint = Blueprint(
     'donations', __name__, template_folder="templates")
+
+
+def send_simple_message(email):
+    return requests.post(
+        f"{MAILGUN_BASE_URL}/messages",
+        auth=("api", MAILGUN_API_KEY),
+        data={"from": f"mailgun@{MAILGUN_DOMAIN_NAME}",
+              "to": [email],
+              "subject": "Hello",
+              "text": "Testing some Mailgun awesomness!"})
 
 
 @donations_blueprint.route('/<image_id>/new', methods=["GET"])
@@ -75,4 +88,6 @@ def create(image_id):
         return redirect(url_for('users.index'))
 
     flash(f"successfully donated RM{amount} thankiu C:")
+    user = User.select().join(Image).where(Image.id == image_id)
+    send_simple_message(user[0].email)
     return redirect(url_for('users.index'))

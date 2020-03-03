@@ -48,6 +48,12 @@ body {
   border: 1px solid rgb(230, 200, 215);
 }
 
+#modal-style-2 {
+  background-color: rgba(0, 0, 0, 0.85); 
+  border: 1px solid rgb(0, 225, 255);
+  color: rgb(0, 225, 255)
+}
+
 #profile {
   display: flex;
   flex-direction: row;
@@ -253,6 +259,19 @@ input[type=file]:focus {
   color: black;
 }
 
+.std-btn-2 {
+  border: 1px solid rgb(230, 200, 215);
+  background-color: transparent;
+  border-radius: 10px;
+  color: rgb(230, 200, 215);
+  padding: 5px 40px;
+}
+
+.std-btn-2:hover {
+  background-color: rgb(230, 200, 215);
+  color: black;
+}
+
 #std-btn-3 {
   border: 1px solid rgb(0, 185, 209);
   background-color: transparent;
@@ -317,8 +336,23 @@ input[type=file]:focus {
   margin-left: 10px;
 }
 
+#post-picha {
+  margin-top: 20px;
+}
+
+#post-icons {
+  margin-top: 10px;
+  font-size: 1.5em;
+}
+
 #post-caption {
   color: rgb(247, 132, 151);
+  margin-top: -10px
+}
+
+#post-caption-username {
+  margin-top: -20px;
+  color: rgb(0, 185, 209)
 }
 
 

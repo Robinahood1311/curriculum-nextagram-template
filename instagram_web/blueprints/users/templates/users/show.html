@@ -18,7 +18,7 @@
         </div>
         <div class="col-4" id="profile-data">
           <h4>followers</h4>
-          <h5 id="profile-data-num">1.2k</h5>
+          <h5 id="profile-data-num">1.2M</h5>
         </div>
         <div class="col-4" id="profile-data">
           <h4>following</h4>
@@ -39,14 +39,15 @@
 <div id="user-posts">
   {% for image in current_user.images %}
   <div>
-    <img src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" id="user-post">
+    <img type="button" data-toggle="modal" data-target="#postsModal"
+      src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" id="user-post">
   </div>
   {% endfor %}
 </div>
 
 <hr />
 
-<!-- Modal -->
+<!-- ADD POST Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -87,5 +88,34 @@
   </div>
 </div>
 
+<!-- VIEW POST Modal -->
+<div class="modal fade" id="postsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="modal-style-2">
+      <div class="modal-header" style="display: flex; align-items: center;">
+        <h4 class="modal-title" id="exampleModalLabel">{{current_user.username}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: pink">&times;</span>
+        </button>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <div class="mx-auto" id="image-preview">
+          <img id="your-image" class="user-image" />
+          <h4 id="preview-word">PREVIEW</h4>
+        </div>
+        <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <p>caption:</p>
+            <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
+            <button type="submit" id="std-btn-2">upload post.</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endif %} {% endblock %}

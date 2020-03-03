@@ -4,20 +4,21 @@
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container" style="text-align: center;">
+  <h4>{{current_user.username}}</h4>
   <div class="row justify-content-center">
     <div class="col-6">
       <img src="{{image.user_image_url}}" alt="" class="w-50 mx-auto d-block mb-4">
       <form id="donation-form" action="{{url_for('donations.create', image_id=image.id)}}" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <input type="hidden" name="payment_method_nonce" id="pmn-field" />
-        <div class="form-group">
-          <label for="amount">amount:</label>
+        <div>
+          <p style="margin: 10px 0 0 0">amount:</p>
           <input type="text" class="form-group" name="amount" />
         </div>
       </form>
       <div id="dropin-container"></div>
-      <button id="submit-button" class="mx-auto d-block mt-4 mb-4">Request payment method</button>
+      <button id="submit-button" class="mx-auto d-block mt-4 mb-4 std-btn-2">Request payment method</button>
       <div>
       </div>
     </div>
