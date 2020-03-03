@@ -293,6 +293,12 @@ input[type=file]:focus {
   align-items: center;
 }
 
+.user-image {
+  height: 250px;
+  width: 250px;
+  display: none;
+}
+
 #caption {
   background-color: transparent;
   border: 2px solid rgb(51, 179, 51);
@@ -300,14 +306,30 @@ input[type=file]:focus {
   margin: -15px 0px 20px 0px;
 }
 
+.card {
+  background-color: transparent;
+  border: 2px solid rgb(0, 225, 255)
+}
+
+#post-username {
+  color: rgb(0, 225, 255);
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#post-caption {
+  color: rgb(247, 132, 151);
+}
+
+
 footer {
   font-size: 11px;
-  position: fixed;
   bottom: 8px;
   left: 0;
   right: 0;
   text-align: center;
   color: white;
+
 }
 
 footer a {

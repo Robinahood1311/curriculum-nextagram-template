@@ -60,17 +60,28 @@
       </div>
       <div class="modal-body" style="text-align: center;">
         <div class="mx-auto" id="image-preview">
-          <h4>PREVIEW</h4>
+          <img id="your-image" class="user-image" />
+          <h4 id="preview-word">PREVIEW</h4>
         </div>
         <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type="file" class="form-control" name="user_image">
+            <input type="file" accept="image/*" onchange="previewImage(event)" class="form-control" name="user_image">
             <p>caption:</p>
             <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
             <button type="submit" id="std-btn-2">upload post.</button>
           </div>
         </form>
+
+        <script>
+          let previewImage = function (event) {
+            let preview = document.getElementById('your-image');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.style.display = "block";
+            let previewWord = document.getElementById('preview-word')
+            previewWord.style.display = "none";
+          };
+        </script>
       </div>
     </div>
   </div>

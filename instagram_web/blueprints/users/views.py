@@ -60,7 +60,8 @@ def show(username):
 
 @users_blueprint.route('/', methods=["GET"])
 def index():
-    return "USERS"
+    users = User.select()
+    return render_template("users/index.html", users=users)
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])

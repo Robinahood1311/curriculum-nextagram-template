@@ -1,0 +1,43 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<div id="homepage">
+  {% if current_user.is_authenticated %}
+  <h3 class="font-effect-neon">HELLO :)</h3>
+  <h4>{{ current_user.username }}</h4>
+  {% else %}
+  <h3 class="font-effect-neon">HELLO</h3>
+  <h4>welcome to nextagram</h4>
+  {% endif %}
+</div>
+
+{% for user in users %}
+{% for image in user.images%}
+
+<div class="container mb-4">
+  <div class="card mx-auto" style="width: 20rem; padding: 20px; margin: 40px 0px">
+    <div class="d-flex flex-direction-row align-items-center">
+      <img src="http://nextagram-melissa.s3.amazonaws.com/{{user.profile_image}}" id="mini_profile_picha" />
+      <a href="{{url_for('users.show', username=current_user.username)}}" id="post-username">
+        <h6 class="card-title">{{user.username}}</h6>
+      </a>
+    </div>
+    <img class="card-img-top" src="{{image.user_image_url}}">
+    <div class="card-body">
+      <p class="card-text" id="post-caption">{{image.caption}}</p>
+    </div>
+    <div>
+      <p>
+        <i class="fas fa-heart"></i>
+        <a href="{{url_for('donations.new', image_id=image.id)}}">
+          <i class="fas fa-money-bill-wave"></i>
+        </a>
+        <i class="fas fa-comment-dots"></i>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endfor %}
+{% endblock %}
