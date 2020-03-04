@@ -11,7 +11,11 @@
         <input type="text" class="form-control" name="username">
         <p style="margin: 10px 0 0 0">password:</p>
         <input type="password" class="form-control" name="password">
-        <button type="submit" class="mt-4" id="std-btn">log in.</button>
+        <div class="d-flex flex-direction-row align-items-center justify-content-center mt-4 mb-3">
+          <button type="submit" id="std-btn">log in.</button>
+          <p style="margin: 0px 10px">OR</p>
+          <a href="{{url_for('sessions.google_login')}}" id="std-btn-2" style="padding: 5px 10px">log in via Google.</a>
+        </div>
         <p style="margin-top: 10px; color: rgb(0, 225, 255)">don't have an account? <a href="{{url_for('users.new')}}"
             style="color: rgb(247, 132, 151)">sign up!</a></p>
       </div>

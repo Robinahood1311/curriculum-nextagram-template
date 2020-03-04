@@ -61,7 +61,7 @@
       </div>
       <div class="modal-body" style="text-align: center;">
         <div class="mx-auto" id="image-preview">
-          <img id="your-image" class="user-image" />
+          <img id="your-image" class="user-image" style="display: none" />
           <h4 id="preview-word">PREVIEW</h4>
         </div>
         <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
@@ -102,8 +102,7 @@
       </div>
       <div class="modal-body" style="text-align: center;">
         <div class="mx-auto" id="image-preview">
-          <img id="your-image" class="user-image" />
-          <h4 id="preview-word">PREVIEW</h4>
+          <img id="post-image" class="user-image" />
         </div>
         <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
           <div class="form-group">
@@ -113,9 +112,21 @@
             <button type="submit" id="std-btn-2">upload post.</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
 </div>
 
+<script>
+  const images = document.querySelectorAll('#user-post');
+
+  images.forEach(img => {
+    img.addEventListener('click', (e) => {
+      imageSrc = e.target.src
+      const postImage = document.querySelector('#post-image')
+      postImage.src = imageSrc
+    })
+  })
+</script>
 {% endif %} {% endblock %}

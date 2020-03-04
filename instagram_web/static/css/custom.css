@@ -315,7 +315,7 @@ input[type=file]:focus {
 .user-image {
   height: 250px;
   width: 250px;
-  display: none;
+  /* display: none; */
 }
 
 #caption {
@@ -357,12 +357,14 @@ input[type=file]:focus {
 
 
 footer {
+  position: fixed;
   font-size: 11px;
   bottom: 8px;
   left: 0;
   right: 0;
   text-align: center;
   color: white;
+  /* margin-bottom: 10px; */
 
 }
 

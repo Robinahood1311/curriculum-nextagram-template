@@ -20,8 +20,10 @@ def create():
     if not 'user_image' in request.files:
         flash('no picha provided')
         return redirect(url_for('users.show', username=current_user.username))
+
     user_image = request.files.get('user_image')
     caption = request.form.get('caption')
+
     if user_image:
         user_image.filename = secure_filename(user_image.filename)
         output = upload_file_to_s3(user_image, S3_BUCKET)
