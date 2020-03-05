@@ -48,14 +48,12 @@ def create():
 @users_blueprint.route('/<username>', methods=["GET"])
 @login_required
 def show(username):
-    if not current_user.username == username:
-        flash("who you.")
+    user = User.get_or_none(User.username == username)
+    if not user:
+        flash("no user found for username provided.")
+        return render_template("users/show.html", user=user)
     else:
-        user = User.get_or_none(User.username == username)
-        if not user:
-            flash("no user found for username provided.")
-        else:
-            return render_template("users/show.html")
+        return render_template("users/show.html", user=user)
 
 
 @users_blueprint.route('/', methods=["GET"])

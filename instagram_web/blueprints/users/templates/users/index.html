@@ -12,13 +12,13 @@
 </div>
 
 {% for user in users %}
-{% for image in user.images%}
+{% for image in user.images %}
 
 <div class="container mb-4">
   <div class="card mx-auto" style="width: 20rem; padding: 20px; margin: 40px 0px">
     <div class="d-flex flex-direction-row align-items-center">
       <img src="http://nextagram-melissa.s3.amazonaws.com/{{user.profile_image}}" id="mini_profile_picha" />
-      <a href="{{url_for('users.show', username=current_user.username)}}" id="post-username">
+      <a href="{{url_for('users.show', username=user.username)}}" id="post-username">
         <h6 class="card-title">{{user.username}}</h6>
       </a>
     </div>

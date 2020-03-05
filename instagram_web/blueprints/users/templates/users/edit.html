@@ -3,7 +3,9 @@
 
 <div id="itsaform-update">
   <div class="col-4 p-5">
-    <h3 class="font-effect-neon">{{ user.username }}</h3>
+    <a href="{{url_for('users.show', username=current_user.username)}}">
+      <h3 class="font-effect-neon">{{ user.username }}</h3>
+    </a>
     <form method="POST" enctype="multipart/form-data" action="{{url_for('users.upload')}}">
       <div class="mx-auto">
         <img src="https://nextagram-melissa.s3.amazonaws.com/{{ user.profile_image }}" id="profile_picha">

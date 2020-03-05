@@ -1,132 +1,64 @@
 {% extends '_layout.html' %}
 {% block content %}
+{% from "macros/viewModal.html" import viewPostModal with context %}
+{% from "macros/addPostModal.html" import addPostModal with context %}
 
-{% if current_user.is_authenticated %}
 <div class="container pt-3">
   <div class="col-10 mx-auto" id="profile">
     <div class="col-4" id="profile-data">
-      <h4>{{ current_user.username }}</h4>
+      <h4>{{ user.username }}</h4>
       <div class="mx-auto">
-        <img src="http://nextagram-melissa.s3.amazonaws.com/{{current_user.profile_image}}" id="smaller_profile_picha">
+        <img src="http://nextagram-melissa.s3.amazonaws.com/{{user.profile_image}}" id="smaller_profile_picha">
       </div>
     </div>
     <div class="col-8">
       <div class="col-12" style="display: flex; flex-direction: row;">
         <div class="col-4" id="profile-data">
           <h4>posts</h4>
-          <h5 id="profile-data-num">123</h5>
+          <h5 id="profile-data-num">{{user.images | length}}</h5>
         </div>
         <div class="col-4" id="profile-data">
           <h4>followers</h4>
-          <h5 id="profile-data-num">1.2M</h5>
+          <h5 id="profile-data-num">{{user.fans | length}}</h5>
         </div>
         <div class="col-4" id="profile-data">
           <h4>following</h4>
-          <h5 id="profile-data-num">12</h5>
+          <h5 id="profile-data-num">{{user.idols | length}}</h5>
         </div>
       </div>
+      {% if user.id == current_user.id %}
       <div class="col-12" id="profile-data"
         style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
         <a href="{{url_for('users.edit', id=current_user.id)}}" id="std-btn-4">edit your profile.</a>
-        <button type="button" data-toggle="modal" data-target="#exampleModal" id="std-btn-2">
-          <i class="fas fa-plus-hexagon"></i>add post.
+        <button type="button" data-toggle="modal" data-target="#addPostModal" id="std-btn-2">add post.
         </button>
       </div>
+      {% else %}
+      <div class="col-12" id="profile-data"
+        style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
+        {% if user.is_following %}
+        <a href="{{url_for('follower_following.create', idol_id=user.id)}}" id="std-btn-2" action="POST">unfollow.</a>
+        {% else %}
+        <a href="{{url_for('follower_following.create', idol_id=user.id)}}" id="std-btn-2" action="POST">follow.</a>
+      </div>
+      {% endif %}
+      {% endif %}
     </div>
   </div>
 </div>
 
+{{ addPostModal() }}
 <div id="user-posts">
-  {% for image in current_user.images %}
+  {% for image in user.images %}
   <div>
     <img type="button" data-toggle="modal" data-target="#postsModal"
       src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" id="user-post">
+    <p class="d-none mt-3">{{image.caption}}</p>
   </div>
   {% endfor %}
+  {{ viewPostModal() }}
 </div>
 
 <hr />
 
-<!-- ADD POST Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" id="modal-style">
-      <div class="modal-header" style="display: flex; align-items: center;">
-        <h4 class="modal-title" id="exampleModalLabel">add post.</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span style="color: pink">&times;</span>
-        </button>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align: center;">
-        <div class="mx-auto" id="image-preview">
-          <img id="your-image" class="user-image" style="display: none" />
-          <h4 id="preview-word">PREVIEW</h4>
-        </div>
-        <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type="file" accept="image/*" onchange="previewImage(event)" class="form-control" name="user_image">
-            <p>caption:</p>
-            <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
-            <button type="submit" id="std-btn-2">upload post.</button>
-          </div>
-        </form>
-
-        <script>
-          let previewImage = function (event) {
-            let preview = document.getElementById('your-image');
-            preview.src = URL.createObjectURL(event.target.files[0]);
-            preview.style.display = "block";
-            let previewWord = document.getElementById('preview-word')
-            previewWord.style.display = "none";
-          };
-        </script>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VIEW POST Modal -->
-<div class="modal fade" id="postsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" id="modal-style-2">
-      <div class="modal-header" style="display: flex; align-items: center;">
-        <h4 class="modal-title" id="exampleModalLabel">{{current_user.username}}</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span style="color: pink">&times;</span>
-        </button>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align: center;">
-        <div class="mx-auto" id="image-preview">
-          <img id="post-image" class="user-image" />
-        </div>
-        <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <p>caption:</p>
-            <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
-            <button type="submit" id="std-btn-2">upload post.</button>
-          </div>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const images = document.querySelectorAll('#user-post');
-
-  images.forEach(img => {
-    img.addEventListener('click', (e) => {
-      imageSrc = e.target.src
-      const postImage = document.querySelector('#post-image')
-      postImage.src = imageSrc
-    })
-  })
-</script>
-{% endif %} {% endblock %}
+{% endblock %}

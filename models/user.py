@@ -3,7 +3,7 @@ import peewee as pw
 import re
 from flask_login import UserMixin
 from flask import url_for
-from playhouse.hybrid import hybrid_property
+from playhouse.hybrid import hybrid_property, hybrid_method
 from config import S3_LINK
 
 
@@ -30,3 +30,13 @@ class User(BaseModel, UserMixin):
             return f"{S3_LINK}/{self.profile_image}"
         else:
             return url_for("static", filename="pichas/default.jpg")
+
+    @hybrid_method
+    def is_following(self, user):
+        from models.follower_following import FollowerFollowing
+        return True if FollowerFollowing.get_or_none((FollowerFollowing.idol_id == user.id) & (FollowerFollowing.fan_id == self.id)) else False
+
+    @hybrid_method
+    def is_followed_by(self, user):
+        from models.follower_following import FollowerFollowing
+        return True if FollowerFollowing.get_or_none((FollowerFollowing.fan_id == user.id) & (FollowerFollowing.idol_id == self.id)) else False

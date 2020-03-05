@@ -1,0 +1,28 @@
+#homepage {
+  border: 7px double rgb(247, 132, 151);
+  border-radius: 20px;
+  padding-top: 15px;
+  width: 400px;
+  height: 150px;
+  margin: auto;
+  text-align: center;
+}
+
+#homepage-2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  justify-content: center;
+    -webkit-animation: fadein 2s;
+}
+
+#homepage-column {
+  text-align: center;
+  margin: 0px 10px;
+  padding-top: 10px
+}
+
+.vl {
+  border-left: 2px solid rgb(0, 185, 209);
+  height: 150px;
+}
