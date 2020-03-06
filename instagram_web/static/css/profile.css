@@ -1,0 +1,68 @@
+#profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+}
+
+#profile-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#profile-data-num {
+  color: rgb(0, 185, 209);
+}
+
+#profile_picha {
+  height: 200px;
+  width: 200px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin: 20px 0px;
+  box-shadow:
+        inset 0 0 10px rgb(236, 172, 172),      /* inner white */
+        inset 20px 0 30px #f0f,   /* inner left magenta short */
+        inset -20px 0 30px #0ff,  /* inner right cyan short */
+        inset 20px 0 90px #f0f,  /* inner left magenta broad */
+        inset -20px 0 90px #0ff, /*inner right cyan broad*/
+        0 0 10px rgb(236, 172, 172),            /* outer white */
+        -10px 0 30px #f0f,        /* outer left magenta */
+        10px 0 30px #0ff; 
+}
+
+#smaller_profile_picha {
+  height: 175px;
+  width: 175px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin: 10px 0px;
+  box-shadow:
+        inset 0 0 10px rgb(236, 172, 172),      /* inner white */
+        inset 20px 0 30px #f0f,   /* inner left magenta short */
+        inset -20px 0 30px #0ff,  /* inner right cyan short */
+        inset 20px 0 90px #f0f,  /* inner left magenta broad */
+        inset -20px 0 90px #0ff, /* inner right cyan broad */
+        0 0 10px rgb(236, 172, 172),            /* outer white */
+        -10px 0 30px #f0f,        /* outer left magenta */
+        10px 0 30px #0ff; 
+}
+
+#mini_profile_picha {
+  height: 30px;
+  width: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin: 10px 0px;
+  box-shadow:
+        inset 0 0 10px rgb(236, 172, 172),      /* inner white */
+        inset 20px 0 30px #f0f,   /* inner left magenta short */
+        inset -20px 0 30px #0ff,  /* inner right cyan short */
+        inset 20px 0 90px #f0f,  /* inner left magenta broad */
+        inset -20px 0 90px #0ff, /* inner right cyan broad */
+        0 0 10px rgb(236, 172, 172),            /* outer white */
+        -10px 0 30px #f0f,        /* outer left magenta */
+        10px 0 30px #0ff; 
+}

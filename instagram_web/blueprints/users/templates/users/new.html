@@ -1,1 +1,25 @@
-<h1>Users#new</h1>
+{% extends '_layout.html' %}
+
+{% block content %}
+
+<div id="itsaform">
+  <div class="col-4">
+    <h3 class="font-effect-neon">SIGN UP.</h3>
+    <form method="POST" action="{{url_for('users.create')}}">
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p style="margin: 10px 0 0 0">username:</p>
+        <input type="text" class="form-control" name="username">
+        <p style="margin: 10px 0 0 0">e-mail:</p>
+        <input type="email" class="form-control" name="email">
+        <p style="margin: 10px 0 0 0">password:</p>
+        <input type="password" class="form-control" name="password">
+        <button type="submit" class="mt-4" id="std-btn">sign up.</button>
+        <p style="margin-top: 10px; color: rgb(0, 225, 255)">already have an account? <a
+            href="{{url_for('sessions.new')}}" style="color: rgb(247, 132, 151)">log in!</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

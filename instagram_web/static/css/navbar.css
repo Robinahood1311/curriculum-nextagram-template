@@ -1,0 +1,15 @@
+#nav-words {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#nav-words:hover {
+  color: rgb(230, 200, 215);
+}
+
+.dropdown-menu {
+  background-color: transparent;
+}
+
+.dropdown-item {
+  color: rgb(230, 200, 215);
+}

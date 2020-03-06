@@ -1,0 +1,56 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<div id="itsaform-update">
+  <div class="col-4 p-5">
+    <a href="{{url_for('users.show', username=current_user.username)}}">
+      <h3 class="font-effect-neon">{{ user.username }}</h3>
+    </a>
+    <form method="POST" enctype="multipart/form-data" action="{{url_for('users.upload')}}">
+      <div class="mx-auto">
+        <img src="https://nextagram-melissa.s3.amazonaws.com/{{ user.profile_image }}" id="profile_picha"
+          style="object-fit: cover;">
+      </div>
+      <button type="button" data-toggle="modal" data-target="#exampleModal" id="std-btn-2">
+        change profile image.
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" id="modal-style">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">change profile image.</h4>
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> -->
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                <input type="file" class="form-control" name="profile_image">
+                <button type="submit" id="std-btn-2">upload.</button>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="std-btn-2" data-dismiss="modal">close.</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form method="POST" enctype="multipart/form-data" action="{{url_for('users.update', id=current_user.id)}}">
+      <div class="form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p style="margin: 30px 0 0 0">username:</p>
+        <input type="text" class="form-control" name="updated_username" value="{{ user.username }}">
+        <p style="margin: 10px 0 0 0">email:</p>
+        <input type="email" class="form-control" name="updated_email" value="{{ user.email }}">
+        <button type="submit" class="mt-4" id="std-btn-2">update.</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

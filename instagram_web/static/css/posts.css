@@ -1,0 +1,97 @@
+#user-posts {
+  column-count: 3;
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+#user-post {
+  height: 30vh;
+  width: 30vh;
+  border: 5px double rgb(0, 185, 209);
+  padding: 2vh;
+  border-radius: 10px;
+  margin: 2vh;
+}
+
+#user-post:hover {
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+  opacity: 0.4;
+}
+
+#comment-input {
+  background-color: transparent;
+  border: 2px solid rgb(0, 225, 255);
+  color: rgb(0, 225, 255);
+}
+
+#comment-btn {
+  color: rgb(230, 200, 215);
+  background-color: transparent;
+  border: transparent;
+  font-size: 50px;
+  align-self: center;
+}
+
+#comment-btn:hover {
+  transition-duration: 0.5s;
+  color: rgb(247, 132, 151);
+  background-color: transparent;
+  border: transparent;
+  font-size: 50px;
+}
+
+#image-preview {
+  height: 300px; 
+  width: 300px; 
+  border: 2px dotted white; 
+  border-radius: 10px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.user-image {
+  height: 250px;
+  width: 250px;
+  /* display: none; */
+}
+
+#caption {
+  background-color: transparent;
+  border: 2px solid rgb(51, 179, 51);
+  color: rgb(51, 179, 51);
+  margin: -15px 0px 20px 0px;
+}
+
+.card {
+  background-color: transparent;
+  border: 2px solid rgb(0, 225, 255)
+}
+
+#post-username {
+  color: rgb(0, 225, 255);
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#post-picha {
+  margin-top: 20px;
+}
+
+#post-icons {
+  margin-top: 10px;
+  font-size: 1.5em;
+}
+
+#post-caption {
+  color: rgb(247, 132, 151);
+  margin-top: -10px
+}
+
+#post-caption-username {
+  margin-top: -20px;
+  color: rgb(0, 185, 209)
+}

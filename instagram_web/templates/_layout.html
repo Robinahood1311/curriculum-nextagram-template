@@ -1,33 +1,67 @@
+{% from "macros/navbar.html" import navbar with context %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100&effect=neon">
+  <script src="https://kit.fontawesome.com/a766116bcc.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
 
-    {% assets "home_css" %}
-      <link rel="stylesheet" href="{{ ASSET_URL }}">
-    {% endassets %}
+  {% assets "home_css" %}
+  <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {% endassets %}
 
-    {% assets "home_js" %}
-      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
+  {% assets "home_js" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+  <script src="https://kit.fontawesome.com/a766116bcc.js" crossorigin="anonymous"></script>
 
-    {% block header %}
-    {% endblock %}
+  {% block header %}
+  {% endblock %}
 
-    <title>
-      {% block title %}
-      {% endblock %}NEXTAGRAM
-    </title>
+  <title>
+    {% block title %}
+    {% endblock %}mel's nextagram
+  </title>
 
-  </head>
-  <body>
+
+</head>
+
+<body>
+  {{ navbar() }}
+  <div class="p-3">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class=flashes>
+      <div style="background-color: transparent;text-align: center; color: rgb(230, 200, 215)">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+  <div style="background-color: transparent;text-align: center; color: rgb(230, 200, 215)">
+    {% for error in errors if errors|length > 0 %}
+    <p>{{error}}</p>
+    {% endfor %}
+  </div>
+  <div>
     {% block content %}
     {% endblock %}
-    <footer>
-      Made with &hearts; at <a target="_blank" href="https://www.nextacademy.com/?utm_source=github&utm_medium=student-challenge&utm_campaign=flask-nextagram">NEXT Academy</a>
-    </footer>
-  </body>
+  </div>
+  <footer>
+    Made with &hearts; at <a target="_blank"
+      href="https://www.nextacademy.com/?utm_source=github&utm_medium=student-challenge&utm_campaign=flask-nextagram">NEXT
+      Academy</a>
+    <p><i class="fas fa-copyright"></i> 2020 melissa teh</p>
+  </footer>
+</body>
+
 </html>

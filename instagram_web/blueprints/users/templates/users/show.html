@@ -1,0 +1,65 @@
+{% extends '_layout.html' %}
+{% block content %}
+{% from "macros/viewModal.html" import viewPostModal with context %}
+{% from "macros/addPostModal.html" import addPostModal with context %}
+
+<div class="container pt-3">
+  <div class="col-10 mx-auto" id="profile">
+    <div class="col-4" id="profile-data">
+      <h4>{{ user.username }}</h4>
+      <div class="mx-auto">
+        <img src="http://nextagram-melissa.s3.amazonaws.com/{{user.profile_image}}" id="smaller_profile_picha">
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="col-12" style="display: flex; flex-direction: row;">
+        <div class="col-4" id="profile-data">
+          <h4>posts</h4>
+          <h5 id="profile-data-num">{{user.images | length}}</h5>
+        </div>
+        <div class="col-4" id="profile-data">
+          <h4>followers</h4>
+          <h5 id="profile-data-num">{{user.fans | length}}</h5>
+        </div>
+        <div class="col-4" id="profile-data">
+          <h4>following</h4>
+          <h5 id="profile-data-num">{{user.idols | length}}</h5>
+        </div>
+      </div>
+      {% if user.id == current_user.id %}
+      <div class="col-12" id="profile-data"
+        style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
+        <a href="{{url_for('users.edit', id=current_user.id)}}" id="std-btn-4">edit your profile.</a>
+        <button type="button" data-toggle="modal" data-target="#addPostModal" id="std-btn-2">add post.
+        </button>
+      </div>
+      {% else %}
+      <div class="col-12" id="profile-data"
+        style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
+        {% if current_user.is_following(user) %}
+        <a href="{{url_for('follower_following.delete', idol_id=user.id)}}" id="std-btn-2" action="POST">unfollow.</a>
+        {% else %}
+        <a href="{{url_for('follower_following.create', idol_id=user.id)}}" id="std-btn-2" action="POST">follow.</a>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{{ addPostModal() }}
+<div id="user-posts">
+  {% for image in user.images %}
+  <div>
+    <img type="button" data-toggle="modal" data-target="#postsModal"
+      src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" style="object-fit: cover;"
+      id="user-post">
+    <p class="d-none mt-3">{{image.caption}}</p>
+  </div>
+  {% endfor %}
+  {{ viewPostModal() }}
+</div>
+
+<hr />
+
+{% endblock %}

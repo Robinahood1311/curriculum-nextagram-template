@@ -1,0 +1,64 @@
+#itsaform {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+    -webkit-animation: fadein 2s;
+}
+
+#itsaform-update {
+  margin-top: -70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+input[type=text] {
+  background-color: transparent;
+  border: 2px solid rgb(0, 225, 255);
+  color: rgb(0, 225, 255);
+  text-align: center;
+}
+
+input[type=text]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=email] {
+  background-color: transparent;
+  border: 2px solid rgb(51, 179, 51);
+  color: rgb(51, 179, 51);
+  text-align: center;
+}
+
+input[type=email]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=password] {
+  background-color: transparent;
+  border: 2px solid pink;
+  color: pink;
+  text-align: center;
+}
+
+input[type=password]:focus {
+  background-color: transparent;
+  color: white;
+}
+
+input[type=file] {
+  background-color: transparent;
+  border: 2px solid rgb(0, 185, 209);
+  color: rgb(0, 185, 209);
+  margin: 25px 0px 15px 0px;
+  padding-top: 10px;
+  height: 55px;
+}
+
+input[type=file]:focus {
+  background-color: transparent;
+  color: white;
+}
