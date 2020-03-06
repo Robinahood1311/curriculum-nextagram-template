@@ -17,12 +17,12 @@ class User(BaseModel, UserMixin):
         duplicate_username = User.get_or_none(User.username == self.username)
 
         if duplicate_username and not duplicate_username.id == self.id:
-            self.errors.append('Username not unique boo')
+            self.errors.append('username not unique boo')
 
         duplicate_email = User.get_or_none(User.email == self.email)
 
         if duplicate_email and not duplicate_email.id == self.id:
-            self.errors.append('Email not unique boo')
+            self.errors.append('e-mail not unique boo')
 
     @hybrid_property
     def profile_image_url(self):

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, url_for, redirect
 from models.user import User
+from models.image import Image
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 import re
@@ -58,8 +59,9 @@ def show(username):
 
 @users_blueprint.route('/', methods=["GET"])
 def index():
-    users = User.select()
-    return render_template("users/index.html", users=users)
+    # users = User.select()
+    images = Image.select().order_by(Image.created_at.desc())
+    return render_template("users/index.html", images=images)
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])

@@ -8,7 +8,8 @@
     </a>
     <form method="POST" enctype="multipart/form-data" action="{{url_for('users.upload')}}">
       <div class="mx-auto">
-        <img src="https://nextagram-melissa.s3.amazonaws.com/{{ user.profile_image }}" id="profile_picha">
+        <img src="https://nextagram-melissa.s3.amazonaws.com/{{ user.profile_image }}" id="profile_picha"
+          style="object-fit: cover;">
       </div>
       <button type="button" data-toggle="modal" data-target="#exampleModal" id="std-btn-2">
         change profile image.

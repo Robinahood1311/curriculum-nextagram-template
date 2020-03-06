@@ -19,7 +19,8 @@
         <form method="POST" action="{{url_for('images.create')}}" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input type="file" accept="image/*" onchange="previewImage(event)" class="form-control" name="user_image">
+            <input type="file" accept="image/*" onchange="previewImage(event)" class="form-control" name="user_image"
+              style="object-fit: cover;">
             <p>caption:</p>
             <textarea name="caption" rows="3" class="form-control" id="caption"></textarea>
             <button type="submit" id="std-btn-2">upload post.</button>

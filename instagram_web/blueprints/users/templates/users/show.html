@@ -36,12 +36,12 @@
       {% else %}
       <div class="col-12" id="profile-data"
         style="margin-top: 30px; flex-direction: row; justify-content: space-evenly;">
-        {% if user.is_following %}
-        <a href="{{url_for('follower_following.create', idol_id=user.id)}}" id="std-btn-2" action="POST">unfollow.</a>
+        {% if current_user.is_following(user) %}
+        <a href="{{url_for('follower_following.delete', idol_id=user.id)}}" id="std-btn-2" action="POST">unfollow.</a>
         {% else %}
         <a href="{{url_for('follower_following.create', idol_id=user.id)}}" id="std-btn-2" action="POST">follow.</a>
+        {% endif %}
       </div>
-      {% endif %}
       {% endif %}
     </div>
   </div>
@@ -52,7 +52,8 @@
   {% for image in user.images %}
   <div>
     <img type="button" data-toggle="modal" data-target="#postsModal"
-      src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" id="user-post">
+      src="https://nextagram-melissa.s3-ap-southeast-1.amazonaws.com/{{image.user_image}}" style="object-fit: cover;"
+      id="user-post">
     <p class="d-none mt-3">{{image.caption}}</p>
   </div>
   {% endfor %}
