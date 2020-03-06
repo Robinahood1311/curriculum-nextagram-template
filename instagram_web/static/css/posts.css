@@ -46,7 +46,7 @@
 #image-preview {
   height: 300px; 
   width: 300px; 
-  border: 1px solid white; 
+  border: 2px dotted white; 
   border-radius: 10px; 
   display: flex; 
   justify-content: center; 
